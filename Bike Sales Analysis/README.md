@@ -9,4 +9,4 @@ Data and guidance provided by Alex from [Alex the Analyst](https://www.youtube.c
 - Interactive dashboard construction
 
 #### Dashboard Preview
-<img width="694" alt="Screenshot 2023-12-22 at 10 45 18 AM" src="https://github.com/tkj02/Analytics_Projects/assets/95245871/aefe525c-2372-4b0c-ba07-43e45e113687">
+<img width="783" alt="Screenshot 2023-12-29 at 8 11 38 PM" src="https://github.com/tkj02/Analytics_Projects/assets/95245871/e2f631c0-a85b-47d7-8c72-1dea7e07b829">
