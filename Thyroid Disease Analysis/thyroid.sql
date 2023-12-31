@@ -103,7 +103,7 @@ CREATE TABLE agestats AS (
 			WHEN age BETWEEN 18 AND 39 THEN 'Adult'
 			WHEN age BETWEEN 40 AND 59 THEN 'Middle Age'
 			ELSE 'Elder'
-		END age_category
+		END AS age_category
 		FROM thyroiddata
 	) AS subtable
 	ON thyroiddata.patient_id = subtable.patient_id
@@ -120,7 +120,17 @@ SELECT age_category, sex, COUNT(*) AS num_patients,
 	   AVG(tsh) AS avg_tsh, AVG(t3) AS avg_t3, AVG(fti) AS avg_fti
 FROM agestats
 GROUP BY age_category, sex
-ORDER BY age_category;
+ORDER BY CASE age_category
+	WHEN 'Child' THEN 1
+	WHEN 'Teenager' THEN 2
+	WHEN 'Adult' THEN 3
+	WHEN 'Middle Age' THEN 4
+	ELSE 5
+END, CASE sex 
+	WHEN 'Male' THEN 1
+	WHEN 'Female' THEN 2
+	ELSE 3
+END;
 
 
 
@@ -148,7 +158,17 @@ CREATE TABLE averagestats AS (
 		  t3 < (avg_t3 + std_t3*2) AND t3 > (avg_t3 - std_t3*2) AND
 		  fti < (avg_fti + std_fti*2) AND fti > (avg_fti - std_fti*2)
 	GROUP BY agestats.age_category, agestats.sex
-	ORDER BY age_category ASC
+	ORDER BY CASE age_category
+		WHEN 'Child' THEN 1
+		WHEN 'Teenager' THEN 2
+		WHEN 'Adult' THEN 3
+		WHEN 'Middle Age' THEN 4
+		ELSE 5
+	END, CASE sex 
+		WHEN 'Male' THEN 1
+		WHEN 'Female' THEN 2
+		ELSE 3
+	END
 );
 
 SELECT * FROM averagestats;
