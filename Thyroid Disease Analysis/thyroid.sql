@@ -29,8 +29,8 @@ DROP COLUMN tbg_measured;
 
 
 -- Removes incorrect entries by age
--- Only considers pateints with realistic ages (<= 130)
-DELETE FROM thyroiddata WHERE age<=130;
+-- Only considers patients with realistic ages (<= 130)
+DELETE FROM thyroiddata WHERE age>130;
 
 
 
